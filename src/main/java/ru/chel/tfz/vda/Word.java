@@ -1,8 +1,8 @@
 package ru.chel.tfz.vda;
 
 public class Word {
-    int id;
-    String word;
+    private int id;
+    private String word;
 
     public Word(int id, String word) {
         this.id = id;
