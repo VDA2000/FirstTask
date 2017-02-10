@@ -1,5 +1,7 @@
 package ru.chel.tfz.vda;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -22,7 +24,10 @@ public class App
         Server server = new Server(2222);
         ServletContextHandler context = new ServletContextHandler(server, "/*");
         context.addServlet(servlet, "/*");
-
+//        Injector injector = Guice.createInjector(new DaoModule());
+//        WordsDao WordsDao = injector.getInstance(WordsDao.class);
+        System.out.println("A");
+        System.out.println("A");
 
         try {
             server.start();
