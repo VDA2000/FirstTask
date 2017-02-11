@@ -15,7 +15,6 @@ public class WordsResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<Word> getCollectionWordsInJSON() {
-        Injector injector = Guice.createInjector(new DaoModule());
-        return injector.getInstance(WordsDao.class).getWords();
+        return App.injector.getInstance(WordsDao.class).getWords();
     }
 }

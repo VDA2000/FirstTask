@@ -14,6 +14,7 @@ import org.glassfish.jersey.servlet.ServletContainer;
  */
 public class App 
 {
+    public static final Injector injector = Guice.createInjector(new DaoModule());
     public static void main( String[] args )
     {
         ResourceConfig config = new ResourceConfig();
@@ -24,10 +25,6 @@ public class App
         Server server = new Server(2222);
         ServletContextHandler context = new ServletContextHandler(server, "/*");
         context.addServlet(servlet, "/*");
-//        Injector injector = Guice.createInjector(new DaoModule());
-//        WordsDao WordsDao = injector.getInstance(WordsDao.class);
-        System.out.println("A");
-        System.out.println("A");
 
         try {
             server.start();
