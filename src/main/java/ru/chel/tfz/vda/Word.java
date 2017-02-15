@@ -1,10 +1,17 @@
 package ru.chel.tfz.vda;
 
-import javax.persistence.PersistenceContext;
+import org.hibernate.annotations.GenericGenerator;
 
-@PersistenceContext(name="word")
+import javax.persistence.*;
+
+@Entity
+@Table( name = "WORD" )
 public class Word {
+    @Id
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
     private int id;
+    @Column(name= "word", length=64)
     private String word;
 
     public Word(int id, String word) {

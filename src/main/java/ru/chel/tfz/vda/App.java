@@ -20,6 +20,8 @@ public class App
     public static final Injector injector = Guice.createInjector(new DaoModule(),new JpaPersistModule("word"));
     public static void main( String[] args )
     {
+        injector.getInstance(PersistService.class).start();
+
         ResourceConfig config = new ResourceConfig();
         config.packages("ru.chel.tfz.vda");
         ServletHolder servlet = new ServletHolder(new ServletContainer(config));
@@ -39,6 +41,6 @@ public class App
         } finally {
             server.destroy();}
 
-        injector.getInstance(PersistService.class).start();
+
     }
 }
