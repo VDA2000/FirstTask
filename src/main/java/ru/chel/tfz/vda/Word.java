@@ -1,5 +1,8 @@
 package ru.chel.tfz.vda;
 
+import javax.persistence.PersistenceContext;
+
+@PersistenceContext(name="word")
 public class Word {
     private int id;
     private String word;

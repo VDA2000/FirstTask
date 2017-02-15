@@ -2,6 +2,7 @@ package ru.chel.tfz.vda;
 
 import com.google.inject.Inject;
 
+import javax.persistence.EntityManager;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,6 +33,9 @@ public class WordsDao {
         return arrayWords;
     }
     @Inject
-    public WordsDao() {
+    /*public WordsDao() {
+    }*/
+    WordsDao(EntityManager em) {
+        System.out.println(em);
     }
 }
