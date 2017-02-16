@@ -1,6 +1,7 @@
 package ru.chel.tfz.vda;
 
 import com.google.inject.Inject;
+import com.google.inject.persist.Transactional;
 
 import javax.persistence.EntityManager;
 import java.sql.*;
@@ -11,6 +12,7 @@ public class WordsDao {
     private static final String url = "jdbc:mysql://localhost:3306/word";
     private static final String user = "root";
     private static final String password = "root";
+    @Inject EntityManager em;
 
     public Collection<Word> getWords() {
         Collection<Word> arrayWords = new ArrayList();
@@ -32,6 +34,11 @@ public class WordsDao {
         }
         return arrayWords;
     }
+    @Transactional
+    public void createNewWord(String word ) {
+        em.persist(new Word(word));
+    }
+
     @Inject
     /*public WordsDao() {
     }*/

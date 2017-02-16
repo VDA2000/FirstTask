@@ -10,6 +10,11 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import java.util.Date;
+
 /**
  * Hello world!
  *
@@ -21,11 +26,12 @@ public class App
     public static void main( String[] args )
     {
         injector.getInstance(PersistService.class).start();
+        injector.getInstance(WordsDao.class).createNewWord("228");
+        injector.getInstance(WordsDao.class).createNewWord("224");
 
         ResourceConfig config = new ResourceConfig();
         config.packages("ru.chel.tfz.vda");
         ServletHolder servlet = new ServletHolder(new ServletContainer(config));
-
 
         Server server = new Server(2222);
         ServletContextHandler context = new ServletContextHandler(server, "/*");
