@@ -15,6 +15,6 @@ public class WordsResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<Word> getCollectionWordsInJSON() {
-        return App.injector.getInstance(WordsDao.class).getWords();
+        return App.injector.getInstance(WordsDao.class).queryAllWords();
     }
 }

@@ -19,7 +19,6 @@ public class Word {
         this.word = word;
     }
     public Word(String word) {
-        this.id = id;
         this.word = word;
     }
 

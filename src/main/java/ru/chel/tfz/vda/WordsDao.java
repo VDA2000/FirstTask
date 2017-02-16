@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class WordsDao {
     private static final String url = "jdbc:mysql://localhost:3306/word";
@@ -35,14 +36,30 @@ public class WordsDao {
         return arrayWords;
     }
     @Transactional
-    public void createNewWord(String word ) {
-        em.persist(new Word(word));
+    public void createNewWord(String... words ) {
+        for(String word: words){
+            em.persist(new Word(word));
+        }
+    }
+
+    @Transactional
+     public Collection<Word> queryAllWords() {
+        return em.createQuery( "from Word", Word.class ).getResultList();
+    }
+
+    public Collection<Word> getWords2() {
+        em.getTransaction().begin();
+        Collection<Word> arrayWords = em.createQuery( "from Word", Word.class ).getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return arrayWords;
     }
 
     @Inject
-    /*public WordsDao() {
-    }*/
     WordsDao(EntityManager em) {
         System.out.println(em);
+    }
+
+    public WordsDao() {
     }
 }

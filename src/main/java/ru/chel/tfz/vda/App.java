@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Hello world!
@@ -21,13 +22,11 @@ import java.util.Date;
  */
 public class App 
 {
-//    public static final Injector injector = Guice.createInjector(new DaoModule());
     public static final Injector injector = Guice.createInjector(new DaoModule(),new JpaPersistModule("word"));
     public static void main( String[] args )
     {
         injector.getInstance(PersistService.class).start();
-        injector.getInstance(WordsDao.class).createNewWord("228");
-        injector.getInstance(WordsDao.class).createNewWord("224");
+        injector.getInstance(WordsDao.class).createNewWord("One","Two","Three","Infinite set","Super","Fine");
 
         ResourceConfig config = new ResourceConfig();
         config.packages("ru.chel.tfz.vda");
